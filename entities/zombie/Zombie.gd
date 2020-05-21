@@ -1,6 +1,6 @@
 extends KinematicBody
  
-const MOVE_SPEED = 3
+const MOVE_SPEED = 1000
  
 onready var raycast = $RayCast
 onready var anim_player = $AnimationPlayer
@@ -22,7 +22,11 @@ func _physics_process(delta):
 		anim_player.stop()
 		$Sprite3D.frame = 0
 		return
+	
+	if !anim_player.is_playing():
+		anim_player.play("walk")
    
+	# TODO Implement a more sophisticated movement system
 	var vec_to_player = player.translation - translation
 	vec_to_player = vec_to_player.normalized()
 	raycast.cast_to = vec_to_player * 1.5
@@ -39,6 +43,9 @@ func _physics_process(delta):
 
 
 func damage():
+	anim_player.stop()
+	anim_player.play("hit")
+	
 	health -= 25
 	if health <= 0:
 		$DetectionArea.monitoring = false
@@ -47,9 +54,6 @@ func damage():
 		anim_player.play("death")
 		dead = true
 		return
-	
-	anim_player.stop()
-	anim_player.play("hit")
    
  
 func kill():

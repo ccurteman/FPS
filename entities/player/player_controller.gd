@@ -112,8 +112,8 @@ func walk(delta: float) -> void:
 		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
 		sprinting = false
 
+
 	# Acceleration and Deacceleration
-	# where would the player go
 	var _temp_vel: Vector3 = velocity
 	_temp_vel.y = 0
 	var _target: Vector3 = direction * _speed
