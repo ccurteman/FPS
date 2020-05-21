@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/zombie/zombie.png" type="Texture" id=1]
 [ext_resource path="res://entities/zombie/Zombie.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "death"
 length = 0.4
 tracks/0/type = "value"
@@ -21,11 +21,25 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 5, 0 ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "walk"
+[sub_resource type="Animation" id=4]
+
+[sub_resource type="Animation" id=5]
 length = 0.6
 loop = true
 step = 0.15
@@ -42,7 +56,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 0 ]
 }
 
-[sub_resource type="SphereShape" id=5]
+[sub_resource type="SphereShape" id=6]
 radius = 3.87956
 
 [node name="Zombie" type="KinematicBody"]
@@ -60,9 +74,10 @@ hframes = 5
 frame = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/death = SubResource( 3 )
+anims/death = SubResource( 2 )
+anims/hit = SubResource( 3 )
 anims/idle = SubResource( 4 )
-anims/walk = SubResource( 2 )
+anims/walk = SubResource( 5 )
 
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true
@@ -75,4 +90,4 @@ one_shot = true
 [node name="DetectionArea" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="DetectionArea"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )

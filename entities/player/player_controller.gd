@@ -33,12 +33,14 @@ var flying := false
 export var floor_max_angle := 45.0
 
 var _bullet_sound_queue := 0
+var health := 100
 
-##################################################
 
 # Called when the node enters the scene tree
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	yield(get_tree(), "idle_frame")
+	get_tree().call_group("zombies", "set_player", self)
 	cam.fov = FOV
 
 
@@ -46,7 +48,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	
+
 	camera_rotation()
 
 
@@ -62,15 +64,15 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
-		
+
 	if Input.is_action_just_pressed("shoot"):
 		$AnimationPlayer.play("shoot")
 		$Gunshot.play()
 		$Timer.start()
 		var collider = $RayCast.get_collider()
-		if collider.has_method("kill"):
-			collider.kill()
-		
+		if collider.has_method("damage"):
+			collider.damage()
+			print("hit")
 
 
 func walk(delta: float) -> void:
@@ -87,7 +89,7 @@ func walk(delta: float) -> void:
 		direction += aim.x
 	direction.y = 0
 	direction = direction.normalized()
-	
+
 	# Jump
 	var _snap: Vector3
 	if is_on_floor():
@@ -95,10 +97,10 @@ func walk(delta: float) -> void:
 		if Input.is_action_just_pressed("move_jump"):
 			_snap = Vector3(0, 0, 0)
 			velocity.y = jump_height
-	
+
 	# Apply Gravity
 	velocity.y -= gravity * delta
-	
+
 	# Sprint
 	var _speed: int
 	if (Input.is_action_pressed("move_sprint") and can_sprint and move_axis.x == 1):
@@ -109,7 +111,7 @@ func walk(delta: float) -> void:
 		_speed = walk_speed
 		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
 		sprinting = false
-	
+
 	# Acceleration and Deacceleration
 	# where would the player go
 	var _temp_vel: Vector3 = velocity
@@ -133,9 +135,9 @@ func walk(delta: float) -> void:
 			velocity.x = 0
 		if velocity.z < _vel_clamp and velocity.z > -_vel_clamp:
 			velocity.z = 0
-	
+
 	# Move
-	velocity.y = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, 
+	velocity.y = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL,
 			true, 4, deg2rad(floor_max_angle)).y
 
 
@@ -152,11 +154,11 @@ func fly(delta: float) -> void:
 	if move_axis.y == 1:
 		direction += aim.x
 	direction = direction.normalized()
-	
+
 	# Acceleration and Deacceleration
 	var target: Vector3 = direction * fly_speed
 	velocity = velocity.linear_interpolate(target, fly_accel * delta)
-	
+
 	# Move
 	velocity = move_and_slide(velocity)
 
@@ -169,16 +171,27 @@ func camera_rotation() -> void:
 		# Get mouse delta
 		var horizontal: float = -(mouse_axis.x * mouse_sensitivity) / _smoothness
 		var vertical: float = -(mouse_axis.y * mouse_sensitivity) / _smoothness
-		
+
 		mouse_axis = Vector2()
-		
+
 		rotate_y(deg2rad(horizontal))
 		head.rotate_x(deg2rad(vertical))
-		
+
 		# Clamp mouse rotation
 		var temp_rot: Vector3 = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
+
+
+func damage():
+	# TODO Add a physics impulse to push the player back when hit
+	health -= 25
+	if health <= 0:
+		call("kill")
+
+
+func kill():
+	get_tree().reload_current_scene()
 
 
 func _on_Timer_timeout():
