@@ -65,7 +65,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
 
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and !$AnimationPlayer.is_playing():
 		$AnimationPlayer.play("shoot")
 		$Gunshot.play()
 		$Timer.start()
