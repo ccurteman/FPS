@@ -58,9 +58,11 @@ tracks/0/keys = {
 }
 
 [sub_resource type="SphereShape" id=6]
-radius = 3.87956
+radius = 1.54885
 
-[node name="Zombie" type="KinematicBody"]
+[node name="Zombie" type="KinematicBody" groups=[
+"zombies",
+]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -88,7 +90,8 @@ cast_to = Vector3( 0, 0, -1000 )
 wait_time = 3.0
 one_shot = true
 
-[node name="DetectionArea" type="Area" parent="."]
+[node name="DamageArea" type="Area" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="DetectionArea"]
+[node name="CollisionShape" type="CollisionShape" parent="DamageArea"]
 shape = SubResource( 6 )
+[connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]

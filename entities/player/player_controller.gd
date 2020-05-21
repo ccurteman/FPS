@@ -42,6 +42,7 @@ func _ready() -> void:
 	yield(get_tree(), "idle_frame")
 	get_tree().call_group("zombies", "set_player", self)
 	cam.fov = FOV
+	$Health_Counter.text = "Health - " + str(health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
@@ -54,6 +55,7 @@ func _process(_delta: float) -> void:
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
+	$Health_Counter.text = "Health - " + str(health)
 	if flying:
 		fly(delta)
 	else:

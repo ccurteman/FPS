@@ -48,8 +48,8 @@ func damage():
 	
 	health -= 25
 	if health <= 0:
-		$DetectionArea.monitoring = false
-		$DetectionArea/CollisionShape.disabled = true
+		$DamageArea.monitoring = false
+		$DamageArea/CollisionShape.disabled = true
 		$CollisionShape.disabled = true
 		anim_player.play("death")
 		dead = true
@@ -62,3 +62,8 @@ func kill():
 func set_player(p):
 	player = p
 	print(player)
+
+
+func _on_DamageArea_body_entered(body):
+	if body == player:
+		body.call("damage")

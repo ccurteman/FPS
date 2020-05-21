@@ -84,4 +84,13 @@ stream = ExtResource( 5 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="Health_Counter" type="Label" parent="."]
+margin_top = 24.8639
+margin_right = 55.0
+margin_bottom = 38.8639
+text = "Health - "
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
