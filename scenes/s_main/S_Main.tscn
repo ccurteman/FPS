@@ -1,0 +1,174 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/s_main/default_env.tres" type="Environment" id=1]
+[ext_resource path="res://scenes/s_main/s_main.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/assets/ladder/Ladder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/assets/fps_counter/FPS_Counter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/s_main/materials/dark.material" type="Material" id=6]
+[ext_resource path="res://scenes/s_main/materials/blue.material" type="Material" id=7]
+[ext_resource path="res://entities/zombie/Zombie.tscn" type="PackedScene" id=8]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -18.2, 2.87457, 1.6, -8, 2.87457, 1.6, -8, 1.67457, -0.799999, -18.2, 0.874565, -8.3, -18.2, 0.874565, -3.35, -18.2, 1.27457, -1.7, -10.55, 0.874565, -2.675, -18.2, 0.874565, -8.3, -8, 1.67457, -0.799999, -7.1, 0.874565, -0.799999, -7.1, 0.874565, -18.2, -18.2, 0.874565, -18.2, -10.55, 0.874565, -2.675, -9.20554, 0.874565, -3.82809, 6.7, 0.874565, -9.8, 8.8, 0.874565, -10.1, 8.5, 0.874565, -18.2, 0.700001, 0.874565, -18.2, -7.1, 0.874565, -0.799999, -6.8, 0.874565, -0.5, 6.7, 0.874565, -5, 6.7, 0.874565, -9.8, 0.700001, 0.874565, -18.2, -7.1, 0.874565, -18.2, -6.8, 0.874565, -0.5, 7.3, 0.874565, -4.7, 6.7, 0.874565, -5, 8.8, 0.874565, -10.1, 18.4, 0.874565, -10.1, 18.4, 0.874565, -18.2, 8.5, 0.874565, -18.2, 7.9, 3.87457, -8.9, 7.9, 3.87457, -5.9, 18.4, 3.87457, -5.9, 18.4, 3.87457, -8.9, 8.2, 0.874565, -8.6, 8.2, 0.874565, -6.2, 18.4, 0.874565, -6.2, 18.4, 0.874565, -8.6, -6.8, 0.874565, 8.5, -9.5, 0.874565, 8.8, -9.5, 0.874565, 18.4, -2.6, 0.874565, 18.4, 4.3, 0.874565, 18.4, 11.2, 0.874565, 18.4, 18.4, 0.874565, 6.7, 7.3, 0.874565, -4.7, -6.8, 0.874565, -0.5, -6.8, 0.874565, 8.5, 11.2, 0.874565, 18.4, 18.4, 0.874565, 18.4, 18.4, 0.874565, 6.7, -6.8, 0.874565, 8.5, -2.6, 0.874565, 18.4, 4.3, 0.874565, 18.4, 18.4, 0.874565, 6.7, 18.4, 0.874565, -4.7, 7.3, 0.874565, -4.7, -8, 2.87457, 1.6, -18.2, 2.87457, 1.6, -18.2, 3.87457, 7.6, -8, 3.87457, 7.6, -8, 3.87457, 4.6, -18.2, 3.87457, 4.6, -16.43, 3.67457, 3.37, -18.2, 0.874565, 7.3, -8.3, 0.874565, 7.3, -8.6, 0.874565, 4.9, -18.2, 0.874565, 4.9, -9.5, 0.874565, 18.4, -9.5, 0.874565, 8.8, -18.2, 0.874565, 8.8, -18.2, 0.874565, 18.4 )
+polygons = [ PoolIntArray( 3, 6, 4 ), PoolIntArray( 4, 6, 5 ), PoolIntArray( 5, 6, 0 ), PoolIntArray( 0, 6, 2 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 10, 7, 11 ), PoolIntArray( 7, 13, 12 ), PoolIntArray( 12, 13, 8 ), PoolIntArray( 8, 13, 9 ), PoolIntArray( 9, 13, 10 ), PoolIntArray( 10, 13, 7 ), PoolIntArray( 17, 16, 14 ), PoolIntArray( 14, 16, 15 ), PoolIntArray( 23, 22, 18 ), PoolIntArray( 18, 22, 19 ), PoolIntArray( 19, 22, 21 ), PoolIntArray( 19, 21, 20 ), PoolIntArray( 26, 25, 24 ), PoolIntArray( 30, 29, 27 ), PoolIntArray( 27, 29, 28 ), PoolIntArray( 34, 33, 31 ), PoolIntArray( 31, 33, 32 ), PoolIntArray( 38, 37, 35 ), PoolIntArray( 35, 37, 36 ), PoolIntArray( 42, 41, 39 ), PoolIntArray( 39, 41, 40 ), PoolIntArray( 48, 47, 43 ), PoolIntArray( 43, 47, 44 ), PoolIntArray( 44, 47, 46 ), PoolIntArray( 44, 46, 45 ), PoolIntArray( 51, 50, 49 ), PoolIntArray( 54, 53, 52 ), PoolIntArray( 57, 56, 55 ), PoolIntArray( 60, 64, 61 ), PoolIntArray( 61, 64, 62 ), PoolIntArray( 62, 64, 58 ), PoolIntArray( 58, 64, 59 ), PoolIntArray( 59, 64, 63 ), PoolIntArray( 63, 64, 60 ), PoolIntArray( 68, 67, 65 ), PoolIntArray( 65, 67, 66 ), PoolIntArray( 72, 71, 69 ), PoolIntArray( 69, 71, 70 ) ]
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=5]
+points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
+
+[node name="S_Main" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="ArenaGeometry" type="Spatial" parent="."]
+
+[node name="Navigation" type="Navigation" parent="ArenaGeometry"]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="ArenaGeometry/Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="Floor1" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( 40, 0, 0, 0, -6.51683e-06, -1, 0, 40, -1.62921e-07, 0.0313206, 9.53674e-07, 0.00365067 )
+use_in_baked_light = true
+mesh = SubResource( 2 )
+material/0 = ExtResource( 6 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Floor1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Floor1/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Slope1" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( 12, 0, 0, 0, 3.74016, -0.226577, 0, 8.02083, 0.105654, -13.502, 1.517, 0.041 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Slope1"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Slope1/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="SlopeWall1" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( -1.18125e-06, -2.40367e-07, 0.25, -3.38095, 3.16392, 1.39296e-15, -7.25046, -1.47536, -4.07302e-08, -7.63, 0.147, 1.08 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="BigCube1" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( -1.74846e-07, 12, -1.31134e-07, 0, -5.24537e-07, -3, -4, -5.24537e-07, 5.73206e-15, -13.5, 2, 6 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/BigCube1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/BigCube1/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="BigCube2" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( -1.74846e-07, 12, -1.31134e-07, 0, -5.24537e-07, -3, -4, -5.24537e-07, 5.73206e-15, 13.5, 2, -7.44552 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/BigCube2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/BigCube2/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Wall1" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, -1.74846e-06, -6, 0, 40, -2.62268e-07, -19.5, 3.5, 0 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall1/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="Wall2" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, -1.74846e-06, -6, 0, 40, -2.62268e-07, 19.5, 3.5, 0 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall2/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="Wall3" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( -4.37114e-08, 40, -2.62268e-07, 0, -1.74846e-06, -6, -1, -1.74846e-06, 1.14641e-14, 0, 3.5, 19.5 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall3/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="Wall4" type="MeshInstance" parent="ArenaGeometry/Navigation/NavigationMeshInstance"]
+transform = Transform( -4.37114e-08, 40, -2.62268e-07, 0, -1.74846e-06, -6, -1, -1.74846e-06, 1.14641e-14, 0, 3.5, -19.5 )
+use_in_baked_light = true
+mesh = SubResource( 4 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Navigation/NavigationMeshInstance/Wall4/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="Lighting" type="Spatial" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = ExtResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
+transform = Transform( 0.965926, 0.198266, 0.166365, -2.09447e-07, -0.642788, 0.766044, 0.258818, -0.739942, -0.620885, 2.17494, 9.39172, -2.14115 )
+light_energy = 2.0
+shadow_enabled = true
+shadow_color = Color( 0.6, 0.6, 0.6, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+mouse_sensitivity = 20.0
+head_path = NodePath("../Player/Head")
+cam_path = NodePath("../Player/Head/Camera")
+
+[node name="Ladder" parent="." instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-07, 13.25, 2, -5.25 )
+
+[node name="FPS_Counter" parent="." instance=ExtResource( 5 )]
+
+[node name="Enemies" type="Spatial" parent="."]
+
+[node name="Zombie" parent="Enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -12.1055 )
+
+[node name="Zombie2" parent="Enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76371, 2, -12.1055 )
+
+[node name="Zombie3" parent="Enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78553, 2, -12.1055 )
+
+[node name="Zombie4" parent="Enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78553, 2, -14.858 )
+
+[node name="Zombie5" parent="Enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225712, 2, -14.858 )
+
+[node name="Zombie6" parent="Enemies" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.411, 2, -14.858 )

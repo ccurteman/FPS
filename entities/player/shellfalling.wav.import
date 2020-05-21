@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shellfalling.wav-ed7a9497f5976b3560afcaf88da54458.sample"
+
+[deps]
+
+source_file="res://entities/player/shellfalling.wav"
+dest_files=[ "res://.import/shellfalling.wav-ed7a9497f5976b3560afcaf88da54458.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

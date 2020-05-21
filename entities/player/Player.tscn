@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://entities/player/player_controller.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/gun.png" type="Texture" id=2]
+[ext_resource path="res://crosshair.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/gunshot.wav" type="AudioStream" id=4]
+[ext_resource path="res://entities/player/shellfalling.wav" type="AudioStream" id=5]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.6
+height = 1.5
+
+[sub_resource type="Animation" id=2]
+resource_name = "shoot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Control/Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 1 )
+head_path = NodePath("Head")
+cam_path = NodePath("Head/Camera")
+
+[node name="Collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+fov = 80.0
+far = 250.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gun" type="Sprite" parent="HUD/Control"]
+position = Vector2( 400.444, 135.283 )
+rotation = -0.141176
+scale = Vector2( 0.703632, 0.683607 )
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="Crosshair" type="Sprite" parent="HUD/Control"]
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shoot = SubResource( 2 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0, -2000 )
+
+[node name="Gunshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+
+[node name="ShellFall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
